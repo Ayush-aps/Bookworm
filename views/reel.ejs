@@ -1,0 +1,30 @@
+<!-- views/reel.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bookworm - Video Reviews</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <%- include('header') %>
+
+  <main>
+    <section class="video-reviews">
+      <h2>Book Reviews & Critic Comments</h2>
+      <div class="reels-container">
+        <% /* Loop through video reviews data */ %>
+        <% reviews.forEach(function(review) { %>
+        <div class="reel">
+          <video controls src="<%= review.videoUrl %>"></video>
+          <p><%= review.comment %></p>
+          <!-- Include a comments section as needed -->
+        </div>
+        <% }); %>
+      </div>
+    </section>
+  </main>
+  <%- include('footer') %>>
+  <script src="/js/main.js"></script>
+</body>
+</html>

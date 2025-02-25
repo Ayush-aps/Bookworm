@@ -1,0 +1,32 @@
+<!-- views/userpage.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bookworm - User Dashboard</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <%- include('header') %>
+
+  <main>
+    <section class="user-dashboard">
+      <h2>Your Dashboard</h2>
+      <div class="dashboard-section">
+        <h3>Purchased Books</h3>
+        <!-- Render purchased books -->
+      </div>
+      <div class="dashboard-section">
+        <h3>Borrowed Books</h3>
+        <!-- Render borrowed books -->
+      </div>
+      <div class="dashboard-section">
+        <h3>Last Read</h3>
+        <!-- Display last-read page with continue reading option -->
+      </div>
+    </section>
+  </main>
+  <%- include('footer') %>
+  <script src="/js/main.js"></script>
+</body>
+</html>

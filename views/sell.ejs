@@ -1,0 +1,30 @@
+<!-- views/sell.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bookworm - Sell Books</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <%- include('header') %>
+
+  <main>
+    <section class="sell-section">
+      <h2>Sell Your Books</h2>
+      <!-- Form to list a book for sale -->
+      <form action="/books/sell" method="POST" enctype="multipart/form-data">
+        <input type="text" name="title" placeholder="Book Title" required>
+        <input type="text" name="author" placeholder="Author" required>
+        <textarea name="description" placeholder="Book Description"></textarea>
+        <input type="number" name="price" placeholder="Price" required>
+        <input type="file" name="image" accept="image/*" required>
+        <input type="text" name="genre" placeholder="Genre">
+        <button type="submit">List Book for Sale</button>
+      </form>
+    </section>
+  </main>
+  <%- include('footer') %>
+  <script src="/js/main.js"></script>
+</body>
+</html>

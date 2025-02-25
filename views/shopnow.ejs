@@ -1,0 +1,46 @@
+<!-- views/shopnow.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bookworm - Shop Now</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <%- include('header') %>
+
+  <main>
+    <!-- Filtering Section -->
+    <section class="filter-section">
+      <h2>Filter Books</h2>
+      <form id="filter-form" method="GET" action="/books/shopnow">
+        <select name="genre">
+          <option value="">Select Genre</option>
+          <option value="fiction">Fiction</option>
+          <option value="non-fiction">Non-fiction</option>
+          <!-- Additional genres as needed -->
+        </select>
+        <select name="sort">
+          <option value="price">Sort by Price</option>
+          <option value="buys">Sort by Total Buys</option>
+        </select>
+        <button type="submit">Apply</button>
+      </form>
+    </section>
+    <!-- Books List Section -->
+    <section class="books-list">
+      <% /* Loop through books passed from controller */ %>
+      <% books.forEach(function(book) { %>
+      <div class="book-card">
+        <img src="<%= book.image %>" alt="<%= book.title %>">
+        <h3><%= book.title %></h3>
+        <p>Price: $<%= book.price %></p>
+        <a href="/books/<%= book._id %>">View Details</a>
+      </div>
+      <% }); %>
+    </section>
+  </main>
+  <%- include('footer') %>
+  <script src="/js/main.js"></script>
+</body>
+</html>
