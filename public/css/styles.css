@@ -43,8 +43,8 @@
 body {
   background: var(--pattern-light);
   color: var(--light-text);
-  font-family: Arial, sans-serif;
   transition: background 0.3s, color 0.3s;
+  font-family: "Roboto", serif;
 }
 
 /* Dark Theme */
@@ -67,9 +67,22 @@ body.dark-mode .navbar {
   background-color: var(--navbar-dark-bg);
   border-bottom: 1px solid #444;
 }
-.navbar .logo img {
-  width: 40px;
-  height: 40px;
+
+.logo{
+  display: flex;
+  gap: 10px;
+}
+
+.logo a{
+  text-decoration: none;
+  color: white;
+}
+
+.navbar .logo svg {
+  color: white;
+  width: 25px;
+  height: 25px;
+  display: inline;
 }
 .navbar .nav-title h1 {
   font-size: 1.5em;
@@ -92,6 +105,7 @@ body.dark-mode .navbar {
 .hamburger-menu {
   position: relative;
   display: inline-block;
+  margin-left: 10px;
 }
 
 .menu-icon {
@@ -157,26 +171,12 @@ footer {
   display: flex;
   flex-wrap: wrap; /* Ensures responsiveness */
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
 }
 
-.social-links {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.social-links img {
-  height: 30px;
-  transition: transform 0.3s ease;
-}
-
-.social-links img:hover {
-  transform: scale(1.1);
-}
 
 .footer-sections {
   display: flex;
@@ -214,11 +214,35 @@ footer {
   color: var(--footer-hover); /* Subtle hover effect */
 }
 
-copyright {
+.copyright {
   text-align: center;
   margin-top: 2rem;
   font-size: 0.9rem;
 }
+
+.social{
+  display: flex;
+  flex-direction: column;
+  font-size: larger;
+}
+
+.social-p{
+  margin: 0 0 10px 0;
+}
+
+.links a{
+  margin: 5px;
+  color: white;
+  text-decoration: none;
+}
+
+.links svg{
+  width: 21px;
+  height: 21px;
+  fill: white;
+  transition: fill 0.3s ease;
+}
+
 
 /* Responsive Design for Footer */
 @media (max-width: 768px) {
