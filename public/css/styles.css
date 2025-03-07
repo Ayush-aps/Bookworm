@@ -14,22 +14,6 @@
   --footer-text: #f0f0f0;
   --footer-hover: #ffffff;
   --card-bg: #ffffff;
-
-  /* Repeating pattern backgrounds for extra visual flair */
-  --pattern-light: repeating-linear-gradient(
-    45deg,
-    #f2f7fa,
-    #f2f7fa 10px,
-    #e2ebef 10px,
-    #e2ebef 20px
-  );
-  --pattern-dark: repeating-linear-gradient(
-    45deg,
-    #1b1b1b,
-    #1b1b1b 10px,
-    #111111 10px,
-    #111111 20px
-  );
 }
 
 /* Reset styles */
