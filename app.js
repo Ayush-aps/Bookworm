@@ -24,6 +24,9 @@ mongoose
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+// Static set to public folder
+app.use(express.static('public'));
+
 // Session middleware
 app.use(session({
   secret: 'bookwormSecret',
