@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const session = require('express-session');
 const app = express();
+const expressLayouts = require('express-ejs-layouts');
 
 // Import Routes
 const userRoutes = require('./routes/userRoutes');
@@ -26,6 +27,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Static set to public folder
 app.use(express.static('public'));
+app.use(expressLayouts);
 
 // Session middleware
 app.use(session({
@@ -39,6 +41,9 @@ app.use((req, res, next) => {
   res.locals.user = req.session.user;
   next();
 });
+
+// Default Layout (Global Layout)
+app.set('layout', 'layouts/default'); 
 
 // Standard middleware
 app.use(express.static(path.join(__dirname, 'public')));

@@ -20,7 +20,7 @@ const books = [
 ];
 
 router.get("/userpage", (req, res) => {
-    res.render("userpage", { books });  // Ensure books is passed here
+    res.render("userpage", { books, layout: 'layouts/userPage_Layout' });  // Ensure books is passed here
 });
 
 module.exports = router;
