@@ -1,46 +1,151 @@
-<!-- views/shopnow.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Bookworm - Shop Now</title>
-  <link rel="stylesheet" href="/css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Now</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script>
+        function updatePriceLabel(value) {
+            document.getElementById('priceLabel').innerText = `$${value}`;
+        }
+    </script>
 </head>
-<body>
-  <%- include('header') %>
+<body class="bg-gray-100">
+    <header class="bg-yellow-600 text-white p-4">
+        <nav class="flex justify-between items-center">
+            <div class="text-lg font-bold">BookWorm</div>
+            <div class="relative flex items-center">
+                <input type="text" placeholder="Search for books..." class="w-80 h-10 p-2 pl-10 rounded-md border border-yellow-600 focus:ring focus:ring-yellow-500 text-black">
+                <svg class="w-5 h-5 absolute left-3 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1011 18.5a7.5 7.5 0 005.65-2.85z" />
+                </svg>
+                <button class="ml-2 bg-white text-yellow-600 px-4 py-2 rounded-md hover:bg-gray-100">Search</button>
+            </div>
+            
+            <ul class="flex space-x-4">
+                <li><a href="#" class="hover:underline">Home</a></li>
+                <li><a href="#" class="hover:underline">Shop</a></li>
+                <li><a href="#" class="hover:underline">Sign In</a></li>
+                <li><a href="#" class="hover:underline">Log in</a></li>
+                <li><a href="#" class="hover:underline">About Us</a></li>
+                <li><a href="#" class="hover:underline">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <main>
-    <!-- Filtering Section -->
-    <section class="filter-section">
-      <h2>Filter Books</h2>
-      <form id="filter-form" method="GET" action="/books/shopnow">
-        <select name="genre">
-          <option value="">Select Genre</option>
-          <option value="fiction">Fiction</option>
-          <option value="non-fiction">Non-fiction</option>
-          <!-- Additional genres as needed -->
-        </select>
-        <select name="sort">
-          <option value="price">Sort by Price</option>
-          <option value="buys">Sort by Total Buys</option>
-        </select>
-        <button type="submit">Apply</button>
-      </form>
-    </section>
-    <!-- Books List Section -->
-    <section class="books-list">
-      <% /* Loop through books passed from controller */ %>
-      <% books.forEach(function(book) { %>
-      <div class="book-card">
-        <img src="<%= book.image %>" alt="<%= book.title %>">
-        <h3><%= book.title %></h3>
-        <p>Price: $<%= book.price %></p>
-        <a href="/books/<%= book._id %>">View Details</a>
-      </div>
-      <% }); %>
-    </section>
+    <main class="flex">
+      <!-- Sidebar -->
+      <aside class="w-1/6 p-4 bg-white shadow-md">
+          <h2 class="font-bold text-lg text-yellow-600">Genres</h2>
+          <ul class="mt-2">
+              <li><a href="/books/shopnow?genre=Fiction" class="block py-1 hover:text-yellow-600">Fiction</a></li>
+              <li><a href="/books/shopnow?genre=Non-Fiction" class="block py-1 hover:text-yellow-600">Non-Fiction</a></li>
+              <li><a href="/books/shopnow?genre=Mystery" class="block py-1 hover:text-yellow-600">Mystery</a></li>
+              <li><a href="/books/shopnow?genre=Fantasy" class="block py-1 hover:text-yellow-600">Fantasy</a></li>
+              <li><a href="/books/shopnow?genre=Science Fiction" class="block py-1 hover:text-yellow-600">Science Fiction</a></li>
+              <li><a href="/books/shopnow?genre=Biography" class="block py-1 hover:text-yellow-600">Biography</a></li>
+          </ul>
+  
+          <h2 class="font-bold text-lg mt-4 text-yellow-600">Price Options</h2>
+          <div class="mt-2">
+              <input type="range" min="0" max="100" value="50" class="w-full" id="priceRange" oninput="updatePriceLabel(this.value)">
+              <p class="mt-2">Selected Price: <span id="priceLabel" class="font-bold text-yellow-600">$50</span></p>
+          </div>
+  
+          <h2 class="font-bold text-lg mt-4 text-yellow-600">Famous Writers</h2>
+          <ul class="mt-2">
+              <li><a href="#" class="block py-1 hover:text-yellow-600">J.K. Rowling</a></li>
+              <li><a href="#" class="block py-1 hover:text-yellow-600">George R.R. Martin</a></li>
+              <li><a href="#" class="block py-1 hover:text-yellow-600">Agatha Christie</a></li>
+              <li><a href="#" class="block py-1 hover:text-yellow-600">Stephen King</a></li>
+              <li><a href="#" class="block py-1 hover:text-yellow-600">Mark Twain</a></li>
+          </ul>
+      </aside>
+  
+      <!-- Books Section -->
+      <section class="flex-grow p-4">
+          <h1 class="text-2xl font-bold text-yellow-600">Available Books</h1>
+          <div class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <% if (books.length > 0) { %>
+                  <% books.forEach(book => { %>
+                      <div class="bg-white p-4 shadow-md rounded-lg border-t-4 border-yellow-600">
+                          <% if (book.image) { %>
+                              <img src="/uploads/<%= book.image %>" alt="<%= book.title %>" class="w-auto h-40 mx-auto object-contain rounded-md">
+                          <% } %>
+                          <h2 class="font-bold text-lg mt-2"><%= book.title %></h2>
+                          <p class="text-gray-700">Author: <%= book.author %></p>
+                          <p class="text-yellow-600 font-semibold">Price: $<%= book.price.toFixed(2) %></p>
+                          <div class="mt-2 flex space-x-2">
+                              <button class="bg-yellow-600 text-white px-4 py-2 rounded-md hover:bg-yellow-700 transition">Buy Now</button>
+                              <button class="bg-white text-yellow-600 border border-yellow-600 px-4 py-2 rounded-md hover:bg-gray-100 transition">Read Soft Copy</button>
+                          </div>
+                      </div>
+                  <% }) %>
+              <% } else { %>
+                  <p class="text-gray-500">No books available.</p>
+              <% } %>
+          </div>
+      </section>
   </main>
-  <%- include('footer') %>
-  <script src="/js/main.js"></script>
+  
+  <footer class="bg-yellow-600 text-white p-6 mt-4">
+    <!-- Back to Top Button -->
+    <div class="text-center mb-4">
+        <a href="#" class="inline-block bg-white text-yellow-600 px-4 py-2 rounded-md text-sm font-bold hover:bg-gray-100 transition">
+            Back to top
+        </a>
+    </div>
+    <!-- Footer Sections in a Row -->
+    <div class="flex flex-wrap justify-around text-center md:text-left">
+        <!-- Get to Know Us -->
+        <div class="w-full md:w-auto px-4">
+            <h2 class="font-bold text-lg">Get to Know Us</h2>
+            <ul class="mt-2 space-y-1">
+                <li><a href="#" class="hover:underline">About BookWorm</a></li>
+                <li><a href="#" class="hover:underline">Careers</a></li>
+                <li><a href="#" class="hover:underline">Press Releases</a></li>
+                <li><a href="#" class="hover:underline">BookWorm Science</a></li>
+            </ul>
+        </div>
+        <!-- Make Money with Us -->
+        <div class="w-full md:w-auto px-4">
+            <h2 class="font-bold text-lg">Make Money with Us</h2>
+            <ul class="mt-2 space-y-1">
+                <li><a href="#" class="hover:underline">Sell books on BookWorm</a></li>
+                <li><a href="#" class="hover:underline">Sell on BookWorm Business</a></li>
+                <li><a href="#" class="hover:underline">Sell apps on BookWorm</a></li>
+                <li><a href="#" class="hover:underline">Become an Affiliate</a></li>
+                <li><a href="#" class="hover:underline">Advertise Your Products</a></li>
+                <li><a href="#" class="hover:underline">Self-Publish with Us</a></li>
+                <li><a href="#" class="hover:underline">Host a BookWorm Hub</a></li>
+            </ul>
+        </div>
+        <!-- Let Us Help You -->
+        <div class="w-full md:w-auto px-4">
+            <h2 class="font-bold text-lg">Let Us Help You</h2>
+            <ul class="mt-2 space-y-1">
+                <li><a href="#" class="hover:underline">Your Account</a></li>
+                <li><a href="#" class="hover:underline">Returns Centre</a></li>
+                <li><a href="#" class="hover:underline">Recalls and Product Safety Alerts</a></li>
+                <li><a href="#" class="hover:underline">100% Purchase Protection</a></li>
+            </ul>
+        </div>
+        <!-- Connect with Us -->
+        <div class="w-full md:w-auto px-4">
+            <h2 class="font-bold text-lg">Connect with Us</h2>
+            <ul class="mt-2 space-y-1">
+                <li><a href="#" class="hover:underline">Facebook</a></li>
+                <li><a href="#" class="hover:underline">Twitter</a></li>
+                <li><a href="#" class="hover:underline">Instagram</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- Footer Copyright -->
+    <div class="text-center mt-6 text-sm">
+        <p>&copy; 2025 BookWorm. All rights reserved.</p>
+    </div>
+</footer>
+  
 </body>
 </html>
