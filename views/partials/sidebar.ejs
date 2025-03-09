@@ -1,12 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sidebar</title>
-    <link rel="stylesheet" href="css/sidebar.css">
-</head>
-<body>
-    <h1>this is sidebar</h1>
-</body>
-</html>
+<!-- views/partials/sidebar.ejs -->
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <div class="profile-container">
+            <div class="profile-image">
+                <img src="/assets/camo-grid.jpg" alt="User Avatar" id="profile-img">
+            </div>
+        </div>
+        <div class="profile-info">
+            <h3 id="user-name">Daivik</h3>
+            <p id="user-role">Member</p>
+        </div>
+    </div>
+
+    <div class="sidebar-menu">
+        <ul>
+            <li class="sidebar-item active">
+                <a href="/dashboard">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="/analytics">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Analytics</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="/projects">
+                    <i class="fas fa-folder"></i>
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="/calendar">
+                    <i class="fas fa-calendar"></i>
+                    <span>Calendar</span>
+                </a>
+            </li>
+            <li class="sidebar-item has-submenu">
+                <a href="#" class="toggle-submenu">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                    <i class="fas fa-chevron-right submenu-icon"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="/settings/profile">Profile</a></li>
+                    <li><a href="/settings/account">Account</a></li>
+                    <li><a href="/settings/security">Security</a></li>
+                </ul>
+            </li>
+            <li class="sidebar-item">
+                <a href="/logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="sidebar-footer">
+        <p>&copy; 2025 Bookish</p>
+    </div>
+
+    <div class="sidebar-toggle" id="sidebar-toggle">
+        <i class="fas fa-chevron-left"></i>
+    </div>
+</div>

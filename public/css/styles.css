@@ -5,11 +5,11 @@
 :root {
   --light-bg: #f2f7fa;
   --light-text: #333;
-  --dark-bg: #1b1b1b;
+  --dark-bg: #222222;
   --dark-text: #f0f0f0;
 
   --navbar-light-bg: #20232a;  /* Subtle match with pattern-light */
-  --navbar-dark-bg: #20232a;   /* Slightly lighter than the dark background */
+  --navbar-dark-bg: #222222;   /* Slightly lighter than the dark background */
 
   --footer-text: #f0f0f0;
   --footer-hover: #ffffff;
@@ -43,12 +43,13 @@ body.dark-mode {
   justify-content: space-between;
   align-items: center;
   padding: 1em;
-  background-color: var(--navbar-light-bg);
+  background-color: #222222;
+  height: 61px;
   border-bottom: 1px solid #ccc;
   transition: background-color 0.3s, color 0.3s, border-bottom 0.3s;
 }
 body.dark-mode .navbar {
-  background-color: var(--navbar-dark-bg);
+  background-color: #222222;
   border-bottom: 1px solid #444;
 }
 
